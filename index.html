@@ -1,0 +1,199 @@
+S<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Access Denied 💍</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:
+        radial-gradient(circle at top, #ff6b81, #6c1025 45%, #170008);
+      color: white;
+      overflow: hidden;
+    }
+
+    .card {
+      width: min(90%, 650px);
+      padding: 45px 30px;
+      text-align: center;
+      border-radius: 25px;
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(12px);
+      border: 2px solid rgba(255,255,255,.2);
+      box-shadow: 0 25px 80px rgba(0,0,0,.5);
+      animation: pop .8s ease;
+    }
+
+    @keyframes pop {
+      from {
+        opacity: 0;
+        transform: scale(.7);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .icon {
+      font-size: 80px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .warning {
+      color: #ff4d67;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 0 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(32px, 7vw, 58px);
+      margin-bottom: 18px;
+      text-shadow: 0 4px 20px rgba(255,0,50,.5);
+    }
+
+    .message {
+      font-size: 22px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .highlight {
+      color: #ffd166;
+      font-weight: bold;
+    }
+
+    button {
+      border: none;
+      padding: 15px 28px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      color: #5a0718;
+      background: linear-gradient(135deg, #ffd166, #ff9f1c);
+      box-shadow: 0 8px 25px rgba(255,159,28,.35);
+      transition: .25s;
+    }
+
+    button:hover {
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    #response {
+      margin-top: 22px;
+      font-size: 18px;
+      min-height: 28px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      opacity: .55;
+      font-size: 13px;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 25px;
+      animation: floatUp 5s linear infinite;
+      opacity: .7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0) rotate(0);
+        opacity: 0;
+      }
+      20% { opacity: .8; }
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+
+    <div class="icon">💍</div>
+
+    <div class="warning">⚠️ ACCESS DENIED ⚠️</div>
+
+    <h1>দুঃখিত! 😭</h1>
+
+    <div class="message">
+      তুমি <span class="highlight">এখনও বিয়ে করো নি!</span> 😑
+      <br><br>
+      তাই এই ওয়েবসাইটে প্রবেশ করা যাবে না।
+      <br>
+      <span class="highlight">আগে বিয়ে করে আসো, তারপর ঢুকো! 😂</span>
+    </div>
+
+    <button onclick="married()">
+      💍 আমি বিয়ে করে ফেলেছি
+    </button>
+
+    <div id="response"></div>
+
+    <div class="footer">
+      © Marriage Security Department™
+    </div>
+
+  </div>
+
+  <script>
+    function married() {
+      const response = document.getElementById("response");
+
+      response.innerHTML =
+        "🤨 প্রমাণ কোথায়? আগে বিয়ের ছবি দেখাও! 😂";
+
+      setTimeout(() => {
+        response.innerHTML =
+          "🚫 Verification Failed — Single detected! 😭";
+      }, 2500);
+    }
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = Math.random() > .5 ? "❤️" : "💍";
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 8000);
+    }
+
+    setInterval(createHeart, 700);
+  </script>
+
+</body>
+</html>
